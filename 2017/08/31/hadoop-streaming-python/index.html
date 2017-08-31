@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="spark streaming,spark," />
+  <meta name="keywords" content="hadoop streaming,hadoop,virtualenv," />
 
 
 
@@ -84,19 +84,16 @@
 
 
 
-<meta name="description" content="Spark streamingSpark Streaming 是Spark的核心API的一个扩展，对于实时流数据处理具有可扩展，高吞吐，可容错性等特点。可从许多数据源，如Kafka，Flume，Kinesis，TCP sockets等，获取数据，可以通过高阶函数map，reduce，join，window等组成的复杂算法处理数据，并将数据存储到文件系统，数据库，或者实时仪表盘中。也可以Spark中">
+<meta name="description" content="最近使用hadoop streaming + python处理数据，LR特征hash时，用到了google的cityhash依赖包。如何在hadoop cluster上执行时加载到所需要的依赖包呢？有一些库可以通过zipimport方式添加，本文不做详细介绍。本文主要利用virtualenv和hadoop streaming的-archives参数来实现hadoop streaming作业对于第三">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Spark Streaming">
-<meta property="og:url" content="https://tjuyzl.github.io/zhileiyue.github.io/2017/03/10/spark-streaming1/index.html">
+<meta property="og:title" content="hadoop streaming python 添加module的问题">
+<meta property="og:url" content="https://tjuyzl.github.io/zhileiyue.github.io/2017/08/31/hadoop-streaming-python/index.html">
 <meta property="og:site_name" content="蜗牛">
-<meta property="og:description" content="Spark streamingSpark Streaming 是Spark的核心API的一个扩展，对于实时流数据处理具有可扩展，高吞吐，可容错性等特点。可从许多数据源，如Kafka，Flume，Kinesis，TCP sockets等，获取数据，可以通过高阶函数map，reduce，join，window等组成的复杂算法处理数据，并将数据存储到文件系统，数据库，或者实时仪表盘中。也可以Spark中">
-<meta property="og:image" content="https://tjuyzl.github.io/zhileiyue.github.io/./images/streaming-arch.png">
-<meta property="og:image" content="https://tjuyzl.github.io/zhileiyue.github.io/./images/streaming-flow.png">
-<meta property="og:updated_time" content="2017-03-19T15:28:29.000Z">
+<meta property="og:description" content="最近使用hadoop streaming + python处理数据，LR特征hash时，用到了google的cityhash依赖包。如何在hadoop cluster上执行时加载到所需要的依赖包呢？有一些库可以通过zipimport方式添加，本文不做详细介绍。本文主要利用virtualenv和hadoop streaming的-archives参数来实现hadoop streaming作业对于第三">
+<meta property="og:updated_time" content="2017-08-31T12:02:56.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Spark Streaming">
-<meta name="twitter:description" content="Spark streamingSpark Streaming 是Spark的核心API的一个扩展，对于实时流数据处理具有可扩展，高吞吐，可容错性等特点。可从许多数据源，如Kafka，Flume，Kinesis，TCP sockets等，获取数据，可以通过高阶函数map，reduce，join，window等组成的复杂算法处理数据，并将数据存储到文件系统，数据库，或者实时仪表盘中。也可以Spark中">
-<meta name="twitter:image" content="https://tjuyzl.github.io/zhileiyue.github.io/./images/streaming-arch.png">
+<meta name="twitter:title" content="hadoop streaming python 添加module的问题">
+<meta name="twitter:description" content="最近使用hadoop streaming + python处理数据，LR特征hash时，用到了google的cityhash依赖包。如何在hadoop cluster上执行时加载到所需要的依赖包呢？有一些库可以通过zipimport方式添加，本文不做详细介绍。本文主要利用virtualenv和hadoop streaming的-archives参数来实现hadoop streaming作业对于第三">
 
 
 
@@ -124,13 +121,13 @@
 
 
 
-  <link rel="canonical" href="https://tjuyzl.github.io/zhileiyue.github.io/2017/03/10/spark-streaming1/"/>
+  <link rel="canonical" href="https://tjuyzl.github.io/zhileiyue.github.io/2017/08/31/hadoop-streaming-python/"/>
 
 
 
 
 
-  <title> Spark Streaming | 蜗牛 </title>
+  <title> hadoop streaming python 添加module的问题 | 蜗牛 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -296,7 +293,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="https://tjuyzl.github.io/zhileiyue.github.io/2017/03/10/spark-streaming1/">
+  <link itemprop="mainEntityOfPage" href="https://tjuyzl.github.io/zhileiyue.github.io/2017/08/31/hadoop-streaming-python/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="岳智磊">
@@ -320,7 +317,7 @@
             
             
               
-                Spark Streaming
+                hadoop streaming python 添加module的问题
               
             
           </h1>
@@ -335,8 +332,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-10T14:47:15+08:00">
-                2017-03-10
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-31T18:29:10+08:00">
+                2017-08-31
               </time>
             
 
@@ -354,8 +351,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/03/10/spark-streaming1/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/10/spark-streaming1/" itemprop="commentCount"></span>
+                <a href="/2017/08/31/hadoop-streaming-python/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/08/31/hadoop-streaming-python/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -381,11 +378,23 @@
       
 
       
-        <h1 id="Spark-streaming"><a href="#Spark-streaming" class="headerlink" title="Spark streaming"></a>Spark streaming</h1><p>Spark Streaming 是Spark的核心API的一个扩展，对于实时流数据处理具有可扩展，高吞吐，可容错性等特点。可从许多数据源，如Kafka，Flume，Kinesis，TCP sockets等，获取数据，可以通过高阶函数map，reduce，join，window等组成的复杂算法处理数据，并将数据存储到文件系统，数据库，或者实时仪表盘中。也可以Spark中的机器学习算法，图算法处理数据流。</p>
-<p><img src="./images/streaming-arch.png" alt="streaming-arch"></p>
-<p>Spark Streaming内部工作原理如图。Spark Streaming接收实时数据流，并将这些数据切分成批数据，供Spark引擎生成结果数据。</p>
-<p><img src="./images/streaming-flow.png" alt="streaming-flow"></p>
-<p>Spark Streaming支持一个高层的抽象，叫做离散流(discretized stream)或者DStream，它代表连续的数据流。DStream既可以利用从Kafka, Flume和Kinesis等源获取的输入数据流创建，也可以在其他DStream的基础上通过高阶函数获得。在内部，DStream是由一系列RDDs组成。</p>
+        <p>最近使用hadoop streaming + python处理数据，LR特征hash时，用到了google的cityhash依赖包。如何在hadoop cluster上执行时加载到所需要的依赖包呢？有一些库可以通过zipimport方式添加，本文不做详细介绍。本文主要利用virtualenv和hadoop streaming的-archives参数来实现hadoop streaming作业对于第三方库的引用。</p>
+<p>对于-archives上传的打包文件，hadoop cluster的每个节点都会同步到本地，并会自动解压。这样，就可以利用virtualenv添加第三方模块，同时将添加过第三方模块的python解释器进行打包上传。hadoop提交任务时，需要制定执行.py文件的解释器为上传的解压缩后的python解释器。</p>
+<p>下面以添加cityhash为例进行说明：</p>
+<ol>
+<li><p>在hadoop client（提交任务的节点）上安装virtualenv</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ sudo apt-get install python-pip python-dev build-essential</div><div class="line"></div><div class="line">$ sudo pip install virtualenv virtualenvwrapper</div></pre></td></tr></table></figure>
+</li>
+<li><p>通过virtualenv在生成python虚拟环境</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">source</span> vp/bin/activate</div><div class="line"></div><div class="line">$ pip install cityhash</div></pre></td></tr></table></figure>
+</li>
+<li><p>将已经安装好第三方模块的python虚拟环境打包</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ tar cvzf vp.tgz vp</div></pre></td></tr></table></figure>
+</li>
+<li><p>提交hadoop streaming作业，需要注意执行作业.py文件的python解释器是压缩包中的解释器 vp.tgz/vp/bin/python hash.py</p>
+</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">hadoop org.apache.hadoop.streaming.HadoopStreaming \</div><div class="line">    -D mapreduce.job.running.map.limit=150 \</div><div class="line">    -D mapred.reduce.tasks=0 \</div><div class="line">    -D stream.num.map.output.key.fields=1 \</div><div class="line">    -D mapreduce.output.fileoutputformat.compress=<span class="literal">true</span> \</div><div class="line">    -D mapreduce.output.fileoutputformat.compress.codec=org.apache.hadoop.io.compress.GzipCodec \</div><div class="line">    -D mapreduce.input.fileinputformat.input.dir.recursive=<span class="literal">true</span> \</div><div class="line">    -D mapred.job.queue.name=recsys \</div><div class="line">    -archives vp.tgz \</div><div class="line">    -file <span class="string">"hash.py"</span> \</div><div class="line">    -file <span class="string">"new_feature.conf"</span> \</div><div class="line">    -partitioner org.apache.hadoop.mapred.lib.KeyFieldBasedPartitioner \</div><div class="line">    -input <span class="variable">$&#123;hash_input&#125;</span> \</div><div class="line">    -output <span class="variable">$&#123;hash_output&#125;</span> \</div><div class="line">    -mapper <span class="string">"vp.tgz/vp/bin/python hash.py"</span></div></pre></td></tr></table></figure>
 
       
     </div>
@@ -409,9 +418,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/spark-streaming/" rel="tag"># spark streaming</a>
+            <a href="/tags/hadoop-streaming/" rel="tag"># hadoop streaming</a>
           
-            <a href="/tags/spark/" rel="tag"># spark</a>
+            <a href="/tags/hadoop/" rel="tag"># hadoop</a>
+          
+            <a href="/tags/virtualenv/" rel="tag"># virtualenv</a>
           
         </div>
       
@@ -420,8 +431,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/01/05/hexo/" rel="next" title="hexo">
-                <i class="fa fa-chevron-left"></i> hexo
+              <a href="/2017/04/12/ethereum/" rel="next" title="ethereum">
+                <i class="fa fa-chevron-left"></i> ethereum
               </a>
             
           </div>
@@ -429,10 +440,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/03/28/wifi-channel/" rel="prev" title="wifi-channel">
-                wifi-channel <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -447,10 +454,10 @@
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2017/03/10/spark-streaming1/"
-     data-title="Spark Streaming"
+        <div class="ds-share flat" data-thread-key="2017/08/31/hadoop-streaming-python/"
+     data-title="hadoop streaming python 添加module的问题"
      data-content=""
-     data-url="https://tjuyzl.github.io/zhileiyue.github.io/2017/03/10/spark-streaming1/">
+     data-url="https://tjuyzl.github.io/zhileiyue.github.io/2017/08/31/hadoop-streaming-python/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -477,8 +484,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2017/03/10/spark-streaming1/"
-           data-title="Spark Streaming" data-url="https://tjuyzl.github.io/zhileiyue.github.io/2017/03/10/spark-streaming1/">
+      <div class="ds-thread" data-thread-key="2017/08/31/hadoop-streaming-python/"
+           data-title="hadoop streaming python 添加module的问题" data-url="https://tjuyzl.github.io/zhileiyue.github.io/2017/08/31/hadoop-streaming-python/">
       </div>
     
   </div>
@@ -502,17 +509,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel">
+      <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.jpg"
@@ -561,22 +559,6 @@
 
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Spark-streaming"><span class="nav-number">1.</span> <span class="nav-text">Spark streaming</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
     </div>

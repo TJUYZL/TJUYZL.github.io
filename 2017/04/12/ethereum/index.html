@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="spark streaming,spark," />
+  <meta name="keywords" content="以太坊,ethereum," />
 
 
 
@@ -84,19 +84,40 @@
 
 
 
-<meta name="description" content="Spark streamingSpark Streaming 是Spark的核心API的一个扩展，对于实时流数据处理具有可扩展，高吞吐，可容错性等特点。可从许多数据源，如Kafka，Flume，Kinesis，TCP sockets等，获取数据，可以通过高阶函数map，reduce，join，window等组成的复杂算法处理数据，并将数据存储到文件系统，数据库，或者实时仪表盘中。也可以Spark中">
+<meta name="description" content="搭建以太坊私有链
+编译安装go version1.8
+
+编译安装solidity
+npm install -g solc 只能安装动态包，但是没有solc的可执行文件
+
+编译安装cmake，version 3.8.0
+yum install 只能安装2.X
+123456789tar -zxvf cmake-3.8.0.tar.gzcd cmake-3.8.0./bootstrapmakemake">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Spark Streaming">
-<meta property="og:url" content="https://tjuyzl.github.io/zhileiyue.github.io/2017/03/10/spark-streaming1/index.html">
+<meta property="og:title" content="ethereum">
+<meta property="og:url" content="https://tjuyzl.github.io/zhileiyue.github.io/2017/04/12/ethereum/index.html">
 <meta property="og:site_name" content="蜗牛">
-<meta property="og:description" content="Spark streamingSpark Streaming 是Spark的核心API的一个扩展，对于实时流数据处理具有可扩展，高吞吐，可容错性等特点。可从许多数据源，如Kafka，Flume，Kinesis，TCP sockets等，获取数据，可以通过高阶函数map，reduce，join，window等组成的复杂算法处理数据，并将数据存储到文件系统，数据库，或者实时仪表盘中。也可以Spark中">
-<meta property="og:image" content="https://tjuyzl.github.io/zhileiyue.github.io/./images/streaming-arch.png">
-<meta property="og:image" content="https://tjuyzl.github.io/zhileiyue.github.io/./images/streaming-flow.png">
-<meta property="og:updated_time" content="2017-03-19T15:28:29.000Z">
+<meta property="og:description" content="搭建以太坊私有链
+编译安装go version1.8
+
+编译安装solidity
+npm install -g solc 只能安装动态包，但是没有solc的可执行文件
+
+编译安装cmake，version 3.8.0
+yum install 只能安装2.X
+123456789tar -zxvf cmake-3.8.0.tar.gzcd cmake-3.8.0./bootstrapmakemake">
+<meta property="og:updated_time" content="2017-04-12T05:41:46.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Spark Streaming">
-<meta name="twitter:description" content="Spark streamingSpark Streaming 是Spark的核心API的一个扩展，对于实时流数据处理具有可扩展，高吞吐，可容错性等特点。可从许多数据源，如Kafka，Flume，Kinesis，TCP sockets等，获取数据，可以通过高阶函数map，reduce，join，window等组成的复杂算法处理数据，并将数据存储到文件系统，数据库，或者实时仪表盘中。也可以Spark中">
-<meta name="twitter:image" content="https://tjuyzl.github.io/zhileiyue.github.io/./images/streaming-arch.png">
+<meta name="twitter:title" content="ethereum">
+<meta name="twitter:description" content="搭建以太坊私有链
+编译安装go version1.8
+
+编译安装solidity
+npm install -g solc 只能安装动态包，但是没有solc的可执行文件
+
+编译安装cmake，version 3.8.0
+yum install 只能安装2.X
+123456789tar -zxvf cmake-3.8.0.tar.gzcd cmake-3.8.0./bootstrapmakemake">
 
 
 
@@ -124,13 +145,13 @@
 
 
 
-  <link rel="canonical" href="https://tjuyzl.github.io/zhileiyue.github.io/2017/03/10/spark-streaming1/"/>
+  <link rel="canonical" href="https://tjuyzl.github.io/zhileiyue.github.io/2017/04/12/ethereum/"/>
 
 
 
 
 
-  <title> Spark Streaming | 蜗牛 </title>
+  <title> ethereum | 蜗牛 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -296,7 +317,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="https://tjuyzl.github.io/zhileiyue.github.io/2017/03/10/spark-streaming1/">
+  <link itemprop="mainEntityOfPage" href="https://tjuyzl.github.io/zhileiyue.github.io/2017/04/12/ethereum/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="岳智磊">
@@ -320,7 +341,7 @@
             
             
               
-                Spark Streaming
+                ethereum
               
             
           </h1>
@@ -335,8 +356,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-10T14:47:15+08:00">
-                2017-03-10
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-12T13:34:49+08:00">
+                2017-04-12
               </time>
             
 
@@ -354,8 +375,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/03/10/spark-streaming1/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/10/spark-streaming1/" itemprop="commentCount"></span>
+                <a href="/2017/04/12/ethereum/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/04/12/ethereum/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -381,11 +402,17 @@
       
 
       
-        <h1 id="Spark-streaming"><a href="#Spark-streaming" class="headerlink" title="Spark streaming"></a>Spark streaming</h1><p>Spark Streaming 是Spark的核心API的一个扩展，对于实时流数据处理具有可扩展，高吞吐，可容错性等特点。可从许多数据源，如Kafka，Flume，Kinesis，TCP sockets等，获取数据，可以通过高阶函数map，reduce，join，window等组成的复杂算法处理数据，并将数据存储到文件系统，数据库，或者实时仪表盘中。也可以Spark中的机器学习算法，图算法处理数据流。</p>
-<p><img src="./images/streaming-arch.png" alt="streaming-arch"></p>
-<p>Spark Streaming内部工作原理如图。Spark Streaming接收实时数据流，并将这些数据切分成批数据，供Spark引擎生成结果数据。</p>
-<p><img src="./images/streaming-flow.png" alt="streaming-flow"></p>
-<p>Spark Streaming支持一个高层的抽象，叫做离散流(discretized stream)或者DStream，它代表连续的数据流。DStream既可以利用从Kafka, Flume和Kinesis等源获取的输入数据流创建，也可以在其他DStream的基础上通过高阶函数获得。在内部，DStream是由一系列RDDs组成。</p>
+        <h3 id="搭建以太坊私有链"><a href="#搭建以太坊私有链" class="headerlink" title="搭建以太坊私有链"></a>搭建以太坊私有链</h3><ol>
+<li><p>编译安装go version1.8</p>
+</li>
+<li><p>编译安装solidity</p>
+<p>npm install -g solc 只能安装动态包，但是没有solc的可执行文件</p>
+</li>
+<li><p>编译安装cmake，version 3.8.0</p>
+<p>yum install 只能安装2.X</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">tar -zxvf cmake-3.8.0.tar.gz</div><div class="line"></div><div class="line">cd cmake-3.8.0</div><div class="line"></div><div class="line">./bootstrap</div><div class="line"></div><div class="line">make</div><div class="line"></div><div class="line">make install</div></pre></td></tr></table></figure>
+</li>
+</ol>
 
       
     </div>
@@ -409,9 +436,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/spark-streaming/" rel="tag"># spark streaming</a>
+            <a href="/tags/以太坊/" rel="tag"># 以太坊</a>
           
-            <a href="/tags/spark/" rel="tag"># spark</a>
+            <a href="/tags/ethereum/" rel="tag"># ethereum</a>
           
         </div>
       
@@ -420,8 +447,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/01/05/hexo/" rel="next" title="hexo">
-                <i class="fa fa-chevron-left"></i> hexo
+              <a href="/2017/03/28/wifi-channel/" rel="next" title="wifi-channel">
+                <i class="fa fa-chevron-left"></i> wifi-channel
               </a>
             
           </div>
@@ -430,8 +457,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/03/28/wifi-channel/" rel="prev" title="wifi-channel">
-                wifi-channel <i class="fa fa-chevron-right"></i>
+              <a href="/2017/08/31/hadoop-streaming-python/" rel="prev" title="hadoop streaming python 添加module的问题">
+                hadoop streaming python 添加module的问题 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -447,10 +474,10 @@
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2017/03/10/spark-streaming1/"
-     data-title="Spark Streaming"
+        <div class="ds-share flat" data-thread-key="2017/04/12/ethereum/"
+     data-title="ethereum"
      data-content=""
-     data-url="https://tjuyzl.github.io/zhileiyue.github.io/2017/03/10/spark-streaming1/">
+     data-url="https://tjuyzl.github.io/zhileiyue.github.io/2017/04/12/ethereum/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -477,8 +504,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2017/03/10/spark-streaming1/"
-           data-title="Spark Streaming" data-url="https://tjuyzl.github.io/zhileiyue.github.io/2017/03/10/spark-streaming1/">
+      <div class="ds-thread" data-thread-key="2017/04/12/ethereum/"
+           data-title="ethereum" data-url="https://tjuyzl.github.io/zhileiyue.github.io/2017/04/12/ethereum/">
       </div>
     
   </div>
@@ -571,7 +598,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Spark-streaming"><span class="nav-number">1.</span> <span class="nav-text">Spark streaming</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#搭建以太坊私有链"><span class="nav-number">1.</span> <span class="nav-text">搭建以太坊私有链</span></a></li></ol></div>
             
 
           </div>
