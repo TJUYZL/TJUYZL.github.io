@@ -101,7 +101,7 @@
 <meta property="og:url" content="http://yuezhilei.com/2017/08/31/hadoop-streaming-python/index.html">
 <meta property="og:site_name" content="蜗牛">
 <meta property="og:description" content="最近使用hadoop streaming + python处理数据，LR特征hash时，用到了google的cityhash依赖包。如何在hadoop cluster上执行时加载到所需要的依赖包呢？有一些库可以通过zipimport方式添加，本文不做详细介绍。本文主要利用virtualenv和hadoop streaming的-archives参数来实现hadoop streaming作业对于第三">
-<meta property="og:updated_time" content="2017-08-31T12:02:56.000Z">
+<meta property="og:updated_time" content="2017-09-27T08:45:45.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hadoop streaming python 添加module的问题">
 <meta name="twitter:description" content="最近使用hadoop streaming + python处理数据，LR特征hash时，用到了google的cityhash依赖包。如何在hadoop cluster上执行时加载到所需要的依赖包呢？有一些库可以通过zipimport方式添加，本文不做详细介绍。本文主要利用virtualenv和hadoop streaming的-archives参数来实现hadoop streaming作业对于第三">
@@ -373,7 +373,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ sudo apt-get install python-pip python-dev build-essential</div><div class="line"></div><div class="line">$ sudo pip install virtualenv virtualenvwrapper</div></pre></td></tr></table></figure>
 </li>
 <li><p>通过virtualenv在生成python虚拟环境</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">source</span> vp/bin/activate</div><div class="line"></div><div class="line">$ pip install cityhash</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ virtualenv vp</div><div class="line"></div><div class="line">$ <span class="built_in">source</span> vp/bin/activate</div><div class="line"></div><div class="line">$ pip install cityhash</div></pre></td></tr></table></figure>
 </li>
 <li><p>将已经安装好第三方模块的python虚拟环境打包</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ tar cvzf vp.tgz vp</div></pre></td></tr></table></figure>

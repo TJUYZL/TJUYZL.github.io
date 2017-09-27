@@ -531,7 +531,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ sudo apt-get install python-pip python-dev build-essential</div><div class="line"></div><div class="line">$ sudo pip install virtualenv virtualenvwrapper</div></pre></td></tr></table></figure>
 </li>
 <li><p>通过virtualenv在生成python虚拟环境</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">source</span> vp/bin/activate</div><div class="line"></div><div class="line">$ pip install cityhash</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ virtualenv vp</div><div class="line"></div><div class="line">$ <span class="built_in">source</span> vp/bin/activate</div><div class="line"></div><div class="line">$ pip install cityhash</div></pre></td></tr></table></figure>
 </li>
 <li><p>将已经安装好第三方模块的python虚拟环境打包</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ tar cvzf vp.tgz vp</div></pre></td></tr></table></figure>
